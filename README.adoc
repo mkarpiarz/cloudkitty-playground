@@ -1,0 +1,33 @@
+== Usage
+Clone this repository and `cd` into it.
+
+Create a virtualenv and install prerequisites:
+
+------
+$ virtualenv -p $(which python3) venv
+$ . venv/bin/activate
+$ pip install -r requirements.txt
+------
+
+Then run the following commands:
+
+------
+$ vagrant up
+$ vagrant ssh-config
+------
+
+Use `HostName`, `Port` and `IdentityFile` outputted by the last command to create an inventory file like this one:
+
+======
+cloudkitty-playground ansible_user=vagrant ansible_host=<IP-from-HostName> ansible_port=<number-from-Port> ansible_private_key_file=<path-from-IdentityFile>
+
+======
+
+Confirm you are all set up by running:
+
+------
+$ ansible -i <your-inventory-file> all -m shell -a "hostname -f"
+------
+
+TODO: Find a method to generate Ansible inventories for Vagrant boxes automatically.
+
