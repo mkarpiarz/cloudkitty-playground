@@ -61,3 +61,8 @@ $ openstack server add floating ip demo1 ${floating_ip_address}
 $ openstack server list
 $ ssh cirros@${floating_ip_address}
 ------
+
+[NOTE]
+======
+You may need to wait a few seconds before SSH on the instance becomes available.
+======
