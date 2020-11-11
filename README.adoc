@@ -16,18 +16,48 @@ $ vagrant up
 $ vagrant ssh-config
 ------
 
-Use `HostName`, `Port` and `IdentityFile` outputted by the last command to create an inventory file like this one:
+Based on the following template, create the `inventory/hosts` inventory file and fill it in with values for parameters `HostName`, `Port` and `IdentityFile` outputted by the last command:
 
 ======
 cloudkitty-playground ansible_user=vagrant ansible_host=<IP-from-HostName> ansible_port=<number-from-Port> ansible_private_key_file=<path-from-IdentityFile>
 
 ======
 
+[NOTE]
+======
+You will need to update the inventory each time you destroy the AIO VM with `vagrant destroy` and then create it again with `vagrant up`.
+======
+
 Confirm you are all set up by running:
 
 ------
-$ ansible -i <your-inventory-file> all -m shell -a "hostname -f"
+$ ansible -i inventory/ all -m shell -a "hostname -f"
 ------
 
 TODO: Find a method to generate Ansible inventories for Vagrant boxes automatically.
 
+Next up, create this symlink (or move/copy the `kolla` subdirectory to `/etc/`) on your deploy host and deploy the OpenStack AIO with `kolla-ansible`:
+
+------
+$ sudo ln -s $(pwd)/kolla /etc/kolla
+$ kolla-genpwd
+$ kolla-ansible -vv -i inventory/ bootstrap-servers
+$ kolla-ansible -vv -i inventory/ deploy
+------
+When the deploy is done, run these commands to create some basic OpenStack resources:
+
+------
+$ kolla-ansible -vv -i inventory/ post-deploy
+$ source /etc/kolla/admin-openrc.sh
+$ wget https://opendev.org/openstack/kolla-ansible/raw/branch/stable/train/tools/init-runonce
+$ EXT_NET_CIDR='10.20.20.0/24' EXT_NET_RANGE='start=10.20.20.100,end=10.20.20.200' EXT_NET_GATEWAY='10.20.20.1' bash init-runonce
+------
+Now you can create a test instance and SSH into it to confirm the environment is fully functional:
+
+------
+$ openstack server create --image cirros --flavor m1.tiny --key-name mykey --network demo-net demo1
+$ eval $(openstack floating ip create public1 -f shell | grep ^floating_ip_address)
+$ openstack server add floating ip demo1 ${floating_ip_address}
+$ openstack server list
+$ ssh cirros@${floating_ip_address}
+------
