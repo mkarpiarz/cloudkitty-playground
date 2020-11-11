@@ -1,0 +1,7 @@
+*.swp
+*.tmp
+.DS_Store
+*.retry
+*.html
+*.pdf
+venv/
