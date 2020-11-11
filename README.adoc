@@ -31,7 +31,7 @@ You will need to update the inventory each time you destroy the AIO VM with `vag
 Confirm you are all set up by running:
 
 ------
-$ ansible -i inventory/ all -m shell -a "hostname -f"
+$ ansible -i inventory/ all -m shell -a "hostname"
 ------
 
 TODO: Find a method to generate Ansible inventories for Vagrant boxes automatically.
