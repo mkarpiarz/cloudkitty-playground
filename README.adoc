@@ -50,7 +50,7 @@ When the deploy is done, run these commands to create some basic OpenStack resou
 $ kolla-ansible -vv -i inventory/ post-deploy
 $ source /etc/kolla/admin-openrc.sh
 $ wget https://opendev.org/openstack/kolla-ansible/raw/branch/stable/train/tools/init-runonce
-$ EXT_NET_CIDR='10.20.20.0/24' EXT_NET_RANGE='start=10.20.20.100,end=10.20.20.200' EXT_NET_GATEWAY='10.20.20.1' bash init-runonce
+$ EXT_NET_CIDR='172.20.20.0/24' EXT_NET_RANGE='start=172.20.20.100,end=172.20.20.200' EXT_NET_GATEWAY='172.20.20.1' bash init-runonce
 ------
 Now you can create a test instance and SSH into it to confirm the environment is fully functional:
 
