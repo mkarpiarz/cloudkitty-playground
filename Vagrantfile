@@ -19,4 +19,7 @@ Vagrant.configure("2") do |config|
     libvirt.memory = 8192
     libvirt.cpus = 2
   end
+
+  config.vm.provision "shell",
+    inline: "ip address flush eth2"
 end
