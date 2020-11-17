@@ -66,3 +66,8 @@ $ ssh cirros@${floating_ip_address}
 ======
 You may need to wait a few seconds before SSH on the instance becomes available.
 ======
+
+[NOTE]
+======
+The Horizon dashboard URL is http://10.10.10.254.
+======

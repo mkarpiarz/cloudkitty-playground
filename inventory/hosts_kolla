@@ -108,3 +108,6 @@ control
 
 [placement-api:children]
 placement
+
+[horizon:children]
+control
