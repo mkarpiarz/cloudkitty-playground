@@ -27,4 +27,5 @@ enable_horizon: "yes"
 
 # CloudKitty
 enable_cloudkitty: "yes"
+enable_horizon_cloudkitty: "yes"
 enable_influxdb: "yes"
