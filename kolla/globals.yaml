@@ -23,7 +23,7 @@ neutron_type_drivers: "local,flat,vlan,vxlan"
 neutron_tenant_network_types: "local"
 enable_cinder: "no"
 enable_heat: "no"
-enable_horizon: "no"
+enable_horizon: "yes"
 
 # CloudKitty
 enable_cloudkitty: "yes"
