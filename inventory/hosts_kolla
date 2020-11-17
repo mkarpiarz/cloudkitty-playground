@@ -108,3 +108,16 @@ control
 
 [placement-api:children]
 placement
+
+# CloudKitty
+[cloudkitty:children]
+control
+
+[cloudkitty-api:children]
+cloudkitty
+
+[cloudkitty-processor:children]
+cloudkitty
+
+[influxdb:children]
+monitoring

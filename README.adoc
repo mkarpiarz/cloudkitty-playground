@@ -66,3 +66,10 @@ $ ssh cirros@${floating_ip_address}
 ======
 You may need to wait a few seconds before SSH on the instance becomes available.
 ======
+
+To confirm CloudKitty is available, run this command on your deploy host:
+
+------
+$ cloudkitty summary get
+------
+This should return an empty list.
