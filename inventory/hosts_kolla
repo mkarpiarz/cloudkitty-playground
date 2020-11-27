@@ -124,3 +124,19 @@ cloudkitty
 
 [influxdb:children]
 monitoring
+
+# Prometheus
+[prometheus:children]
+control
+
+[prometheus-openstack-exporter:children]
+control
+
+[prometheus-node-exporter:children]
+[prometheus-mysqld-exporter:children]
+[prometheus-haproxy-exporter:children]
+[prometheus-memcached-exporter:children]
+[prometheus-cadvisor:children]
+[prometheus-alertmanager:children]
+[prometheus-elasticsearch-exporter:children]
+[prometheus-blackbox-exporter:children]

@@ -29,3 +29,17 @@ enable_horizon: "yes"
 enable_cloudkitty: "yes"
 enable_horizon_cloudkitty: "yes"
 enable_influxdb: "yes"
+
+# Prometheus
+# Only deploy the OpenStack exporter and explicitly disable the rest
+enable_prometheus: "yes"
+enable_prometheus_openstack_exporter: "yes"
+enable_prometheus_node_exporter: "no"
+enable_prometheus_cadvisor: "no"
+enable_prometheus_memcached_exporter: "no"
+enable_prometheus_alertmanager: "no"
+enable_prometheus_ceph_mgr_exporter: "no"
+enable_prometheus_elasticsearch_exporter: "no"
+enable_prometheus_blackbox_exporter: "no"
+enable_prometheus_mysqld_exporter: "no"
+enable_prometheus_haproxy_exporter: "no"
