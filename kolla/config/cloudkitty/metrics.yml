@@ -1,0 +1,10 @@
+metrics:
+  openstack_nova_limits_vcpus_used:
+    unit: instance
+    mutate: NONE
+    groupby:
+      - tenant_id
+    #metadata:
+    #  - tenant_id
+    extra_args:
+      aggregation_method: max
