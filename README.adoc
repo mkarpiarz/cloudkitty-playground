@@ -78,3 +78,7 @@ To confirm CloudKitty is available, run this command on your deploy host:
 $ cloudkitty summary get
 ------
 This should return an empty list.
+
+== Resources
+. https://docs.openstack.org/cloudkitty/train/admin/configuration/collector.html
+. https://docs.openstack.org/cloudkitty/train/user/rating/hashmap.html
