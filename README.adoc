@@ -79,13 +79,33 @@ $ cloudkitty summary get
 ------
 This should return an empty list.
 
-Test Monasca:
+Enable cross-tenant metric submission for the Monasca agent (only run these once):
+
+------
+$ openstack role add --user monasca-agent --project monasca_control_plane admin
+$ ansible -i inventory/ cloudkitty-playground -m raw -a "sudo docker restart monasca_agent_collector"
+------
+Take output from this command:
+
+------
+$ grep nova_keystone_password kolla/passwords.yml | cut -d: -f2
+------
+and put it as the value of the "password" parameter in `kolla/config/monasca/agent_plugins/libvirt.yaml`. Then reconfigure Monasca:
+
+------
+$ kolla-ansible -vv -i inventory/ reconfigure -t monasca
+------
+TODO: Find an easier method for setting this "password" parameter.
+
+Finally, test Monasca:
 
 ------
 $ monasca metric-list
 ------
-This command should return without an error code.
+This command should return some basic metrics for the `demo1` instance.
 
 == Resources
 . https://docs.openstack.org/cloudkitty/train/admin/configuration/collector.html
 . https://docs.openstack.org/cloudkitty/train/user/rating/hashmap.html
+. https://github.com/openstack/monasca-agent/blob/stable/train/docs/Libvirt.md
+. https://github.com/openstack/monasca-agent/blob/stable/train/docs/MonascaMetrics.md#cross-tenant-metric-submission

@@ -33,6 +33,8 @@ enable_influxdb: "yes"
 # Monasca (metrics only)
 enable_monasca: "yes"
 monasca_install_type: "source"
+# Use a custom image with the Monasca Libvirt Agent baked in
+monasca_agent_image_full: "mkarpiarz/centos-source-monasca-agent:train-libvirt"
 # These are enabled implicitly with `enable_monasca`
 # but for clarity enable them explicitly as well
 enable_kafka: "yes"
