@@ -79,6 +79,13 @@ $ cloudkitty summary get
 ------
 This should return an empty list.
 
+Test Monasca:
+
+------
+$ monasca metric-list
+------
+This command should return without an error code.
+
 == Resources
 . https://docs.openstack.org/cloudkitty/train/admin/configuration/collector.html
 . https://docs.openstack.org/cloudkitty/train/user/rating/hashmap.html

@@ -2,3 +2,4 @@ ansible==2.8.7
 kolla-ansible==9.2.0
 python-openstackclient==5.4.0
 python-cloudkittyclient==4.1.0
+python-monascaclient==2.2.1

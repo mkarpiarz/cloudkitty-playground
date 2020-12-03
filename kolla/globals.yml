@@ -29,3 +29,14 @@ enable_horizon: "yes"
 enable_cloudkitty: "yes"
 enable_horizon_cloudkitty: "yes"
 enable_influxdb: "yes"
+
+# Monasca (metrics only)
+enable_monasca: "yes"
+monasca_install_type: "source"
+# These are enabled implicitly with `enable_monasca`
+# but for clarity enable them explicitly as well
+enable_kafka: "yes"
+enable_zookeeper: "yes"
+enable_influxdb: "yes"
+# Enable Storm if you need monasca-thresh
+enable_storm: "no"
