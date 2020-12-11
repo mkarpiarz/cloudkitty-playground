@@ -1,6 +1,6 @@
 init_config:
     # These are Nova credentials, [keystone_authtoken] in /etc/nova/nova.conf
-    password: <FILL-ME!!!>
+    password: # output from `grep nova_keystone_password kolla/passwords.yml | cut -d: -f2 | tr -d ' '`
     project_name: service
     username: nova
     auth_url: 'http://10.10.10.254:35357'

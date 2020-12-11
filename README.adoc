@@ -89,7 +89,7 @@ $ ansible -i inventory/ cloudkitty-playground -m raw -a "sudo docker restart mon
 Take output from this command:
 
 ------
-$ grep nova_keystone_password kolla/passwords.yml | cut -d: -f2
+$ grep nova_keystone_password kolla/passwords.yml | cut -d: -f2 | tr -d ' '
 ------
 and put it as the value of the "password" parameter in `kolla/config/monasca/agent_plugins/libvirt.yaml`. Then reconfigure Monasca:
 
