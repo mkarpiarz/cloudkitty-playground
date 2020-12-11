@@ -79,6 +79,15 @@ $ cloudkitty summary get
 ------
 This should return an empty list.
 
+Test Gnocchi:
+
+------
+$ metric_uuid=$(openstack metric list -f value | grep vcpus | cut -d' ' -f1)
+$ openstack metric measures show ${metric_uuid}
+------
+The above should return measurements for the `vcpus` metric of the test instance.
+
 == Resources
 . https://docs.openstack.org/cloudkitty/train/admin/configuration/collector.html
 . https://docs.openstack.org/cloudkitty/train/user/rating/hashmap.html
+. https://docs.openstack.org/ceilometer/train/install/install-base-rdo.html

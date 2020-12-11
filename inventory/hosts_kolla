@@ -124,3 +124,30 @@ cloudkitty
 
 [influxdb:children]
 monitoring
+
+# Gnocchi
+[gnocchi:children]
+control
+
+[gnocchi-api:children]
+gnocchi
+
+[gnocchi-metricd:children]
+gnocchi
+
+[gnocchi-statsd:children]
+
+# Ceilometer
+[ceilometer:children]
+control
+
+[ceilometer-central:children]
+ceilometer
+
+[ceilometer-notification:children]
+ceilometer
+
+[ceilometer-compute:children]
+compute
+
+[ceilometer-ipmi:children]

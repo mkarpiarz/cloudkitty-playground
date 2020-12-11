@@ -29,3 +29,8 @@ enable_horizon: "yes"
 enable_cloudkitty: "yes"
 enable_horizon_cloudkitty: "yes"
 enable_influxdb: "yes"
+
+# Gnocchi and Ceilometer
+enable_gnocchi: "yes"
+gnocchi_backend_storage: "file"
+enable_ceilometer: "yes"
