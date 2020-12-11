@@ -1,0 +1,12 @@
+metrics:
+  vm.cpu.used_cores:
+    unit: number
+    mutate: NONE
+    groupby:
+      - resource_id
+    metadata:
+      - tenant_id
+    extra_args:
+      #aggregation_method: max
+      resource_key: resource_id
+      forced_project_id: # output from `openstack project show monasca_control_plane -f json | jq '.id' | tr -d \"`
