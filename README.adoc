@@ -82,7 +82,7 @@ This should return an empty list.
 Enable cross-tenant metric submission for the Monasca agent (only run these once):
 
 ------
-$ openstack role add --user monasca-agent --project monasca_control_plane admin
+$ openstack role add --user monasca-agent --project monasca_control_plane monitoring-delegate
 $ ansible -i inventory/ cloudkitty-playground -m raw -a "sudo docker restart monasca_agent_collector"
 ------
 Take output from this command:

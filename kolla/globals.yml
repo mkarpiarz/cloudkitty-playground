@@ -33,6 +33,11 @@ enable_influxdb: "yes"
 # Monasca (metrics only)
 enable_monasca: "yes"
 monasca_install_type: "source"
+# Roles for cross-tenant metric submission
+# ("admin" left for backward compatibility)
+monasca_delegate_authorized_roles:
+  - monitoring-delegate
+  - admin
 # Use a custom image with the Monasca Libvirt Agent baked in
 monasca_agent_image_full: "mkarpiarz/centos-source-monasca-agent:train-libvirt"
 # These are enabled implicitly with `enable_monasca`
