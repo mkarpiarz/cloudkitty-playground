@@ -1,0 +1,11 @@
+metrics:
+  vcpus:
+    unit: vcpu
+    mutate: NONE
+    groupby:
+      - id
+    metadata:
+      - flavor_id
+    extra_args:
+      aggregation_method: mean
+      resource_type: instance

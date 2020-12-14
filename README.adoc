@@ -87,6 +87,22 @@ $ openstack metric measures show ${metric_uuid}
 ------
 The above should return measurements for the `vcpus` metric of the test instance.
 
+Configure billing for a test metric (check out `kolla/config/cloudkitty/metrics.yml` for a definition of the metric):
+
+------
+## kolla-ansible should have created the "rating" role but if it didn't, run this command:
+## openstack role create rating
+$ openstack role add --user cloudkitty --project admin rating
+$ cloudkitty module list
+$ cloudkitty module enable hashmap
+$ group_uuid=$(cloudkitty hashmap group create billing_vcpus -f value | cut -d' ' -f2)
+$ service_uuid=$(cloudkitty hashmap service create vcpus -f value | cut -d' ' -f2)
+## Apply a simple flat rate of 0.5 per vCPU per collection period.
+$ cloudkitty hashmap mapping create 0.5 -s ${service_uuid} -t flat -g ${group_uuid}
+$ cloudkitty summary get
+------
+On the output from the last command you should now see a number in the "Rate" column and this number should increase with time.
+
 == Resources
 . https://docs.openstack.org/cloudkitty/train/admin/configuration/collector.html
 . https://docs.openstack.org/cloudkitty/train/user/rating/hashmap.html
