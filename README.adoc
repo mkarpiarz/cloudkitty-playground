@@ -45,6 +45,11 @@ $ kolla-genpwd
 $ kolla-ansible -vv -i inventory/ bootstrap-servers
 $ kolla-ansible -vv -i inventory/ deploy
 ------
+
+[NOTE]
+======
+Config files for all the deployed OpenStack services can be found in the `/etc/kolla/` directory inside the Vagrant machine.
+======
 When the deploy is done, run these commands to create some basic OpenStack resources:
 
 ------
