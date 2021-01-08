@@ -84,6 +84,75 @@ $ cloudkitty summary get
 ------
 This should return an empty list.
 
+=== Replacing CloudKitty containers with host virtualenvs
+For Cloudkitty testing and development it might be more convenient to work with CloudKitty installed in a virtualenv on the host rather than in containers.
+
+------
+$ vagrant ssh
+$ sudo yum install python3 python3-devel gcc git vim -y
+$ curl https://bootstrap.pypa.io/get-pip.py | sudo python3 -
+$ pip3 install virtualenv==20.2.1
+$ git clone https://opendev.org/openstack/cloudkitty
+$ cd cloudkitty/
+$ git checkout stable/train
+$ virtualenv -p $(which python3) venv
+$ . venv/bin/activate
+$ pip install -r requirements.txt
+$ pip install pymysql==0.10.1 python3-memcached==1.51 # these modules are needed but not listed in requirements
+$ pip install Werkzeug==0.16.1 # the latest version (1.0.1) no longer supports the "DispatcherMiddleware()" method
+$ python setup.py install
+$ sudo mkdir -p /opt/cloudkitty/log
+$ sudo chown -R vagrant /opt/cloudkitty/
+------
+To replace the `cloudkitty_processor` container follow these steps:
+
+------
+$ sudo cat /etc/kolla/cloudkitty-processor/cloudkitty.conf | tee /opt/cloudkitty/cloudkitty.conf
+$ sudo cat /etc/kolla/cloudkitty-processor/metrics.yml | tee /opt/cloudkitty/metrics.yml
+------
+Adjust paths for the following config parameters found in `/opt/cloudkitty/cloudkitty.conf`:
+
+* `log_dir = /opt/cloudkitty/log`
+* `lock_path = /opt/cloudkitty/tmp`
+* `metrics_conf = /etc/cloudkitty/metrics.yml`
+
+Also, remove or comment out `log_file` if present.
+Finally, start the service:
+
+------
+$ sudo docker stop cloudkitty_processor
+$ . venv/bin/activate
+$ $(which cloudkitty-processor) --config-file /opt/cloudkitty/cloudkitty.conf
+------
+Processor logs will be written to `/opt/cloudkitty/log/cloudkitty-processor.log`.
+
+To replace the `cloudkitty_api` container follow these steps:
+
+------
+$ sudo cat /etc/kolla/cloudkitty-api/cloudkitty.conf | tee /opt/cloudkitty/cloudkitty.conf
+$ sudo docker exec cloudkitty_api cat /etc/cloudkitty/api_paste.ini | tee /opt/cloudkitty/api_paste.ini
+------
+Adjust paths for the following config parameters found in `/opt/cloudkitty/cloudkitty.conf`:
+
+* `log_dir = /opt/cloudkitty/log`
+* `lock_path = /opt/cloudkitty/tmp`
+
+Also, remove or comment out `log_file` if present.
+Finally, start the service:
+
+------
+$ sudo docker stop cloudkitty_api
+$ . venv/bin/activate
+$ $(which cloudkitty-api) --host 10.10.10.254 --port 8889 -- --config-file /opt/cloudkitty/cloudkitty.conf
+------
+
+[NOTE]
+======
+The port number and the host IP have to be passed through flags even if they are specified again in the `[api]` section of `cloudkitty.conf`.
+======
+
+API logs will be written to `/opt/cloudkitty/log/cloudkitty-api.log`.
+
 == Resources
 . https://docs.openstack.org/cloudkitty/train/admin/configuration/collector.html
 . https://docs.openstack.org/cloudkitty/train/user/rating/hashmap.html
