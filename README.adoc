@@ -146,3 +146,4 @@ On the output from the last command you should now see a number in the "Rate" co
 . https://docs.openstack.org/cloudkitty/train/user/rating/hashmap.html
 . https://github.com/openstack/monasca-agent/blob/stable/train/docs/Libvirt.md
 . https://github.com/openstack/monasca-agent/blob/stable/train/docs/MonascaMetrics.md#cross-tenant-metric-submission
+. https://svn.apache.org/repos/asf/zookeeper/trunk/docs/zookeeperAdmin.html
