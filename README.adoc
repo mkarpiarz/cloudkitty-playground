@@ -141,9 +141,25 @@ $ cloudkitty summary get
 ------
 On the output from the last command you should now see a number in the "Rate" column and this number should increase with time.
 
+== Maintenance
+Monasca components and components that Monasca relies on will generate more data over time so after a while the AIO box can run out of disk space. You can find large Docker volumes (and files inside them) by running this command:
+
+------
+$ vagrant ssh
+$ sudo du -a /var/lib/docker/volumes | sort -n -r | head -n 10
+------
+
+Zookeeper is configured to purge old snapshots periodically, however Kafka logs will keep growing over time. Currently you can manually delete old messages by removing the topic to which Monasca sends its metrics (Kafka will recreate the topic from scratch automatically):
+
+------
+$ sudo docker exec -it kafka /opt/kafka/bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic metrics
+------
+Give Kafka a moment to trigger the deletion process and then check the size of `/var/lib/docker/volumes/kafka`, which should, hopefully, get smaller.
+
 == Resources
 . https://docs.openstack.org/cloudkitty/train/admin/configuration/collector.html
 . https://docs.openstack.org/cloudkitty/train/user/rating/hashmap.html
 . https://github.com/openstack/monasca-agent/blob/stable/train/docs/Libvirt.md
 . https://github.com/openstack/monasca-agent/blob/stable/train/docs/MonascaMetrics.md#cross-tenant-metric-submission
 . https://svn.apache.org/repos/asf/zookeeper/trunk/docs/zookeeperAdmin.html
+. https://stackoverflow.com/questions/44405663/list-all-kafka-topics
