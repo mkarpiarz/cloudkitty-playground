@@ -108,6 +108,11 @@ $ cloudkitty summary get
 ------
 On the output from the last command you should now see a number in the "Rate" column and this number should increase with time.
 
+[NOTE]
+======
+For metrics like "cpu", "volume.size" and "image.size" you may see the 'Granularities are missing' error message in CloudKitty's logs. As a result, these metrics won't be properly rated. To fix this problem you will need to either adjust data granularity in your `metrics.yml` or change the archive policy for these metrics. For more details refer to: https://storyboard.openstack.org/#!/story/2008598.
+======
+
 == Resources
 . https://docs.openstack.org/cloudkitty/train/admin/configuration/collector.html
 . https://docs.openstack.org/cloudkitty/train/user/rating/hashmap.html
