@@ -1,5 +1,5 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "centos/7"
+  config.vm.box = "centos/8"
   config.vm.hostname = "cloudkitty-playground"
 
   # main deploy interface

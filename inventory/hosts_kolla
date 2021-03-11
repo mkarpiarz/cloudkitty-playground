@@ -26,6 +26,12 @@ storage
 [bifrost:children]
 deployment
 
+[kolla-toolbox:children]
+control
+
+[kolla-logs:children]
+control
+
 [rabbitmq:children]
 control
 
@@ -78,6 +84,11 @@ neutron
 [neutron-infoblox-ipam-agent:children]
 [neutron-metering-agent:children]
 [ironic-neutron-agent:children]
+
+# OVN groupings for Ussuri and Victoria
+[neutron-ovn-metadata-agent:children]
+[ovn-nb-db:children]
+[ovn-sb-db:children]
 
 [nova:children]
 control
