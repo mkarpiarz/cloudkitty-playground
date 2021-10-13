@@ -113,9 +113,9 @@ $ sudo cat /etc/kolla/cloudkitty-processor/metrics.yml | tee /opt/cloudkitty/met
 ------
 Adjust paths for the following config parameters found in `/opt/cloudkitty/cloudkitty.conf`:
 
-* `log_dir = /opt/cloudkitty/log`
-* `lock_path = /opt/cloudkitty/tmp`
-* `metrics_conf = /etc/cloudkitty/metrics.yml`
+* `log_dir = /opt/cloudkitty/log` in section `[DEFAULT]`
+* `lock_path = /opt/cloudkitty/tmp` in section `[oslo_concurrency]`
+* `metrics_conf = /etc/cloudkitty/metrics.yml` in section `[collect]`
 
 Also, remove or comment out `log_file` if present.
 Finally, start the service:
@@ -135,8 +135,8 @@ $ sudo docker exec cloudkitty_api cat /etc/cloudkitty/api_paste.ini | tee /opt/c
 ------
 Adjust paths for the following config parameters found in `/opt/cloudkitty/cloudkitty.conf`:
 
-* `log_dir = /opt/cloudkitty/log`
-* `lock_path = /opt/cloudkitty/tmp`
+* `log_dir = /opt/cloudkitty/log` in section `[DEFAULT]`
+* `lock_path = /opt/cloudkitty/tmp` in section `[oslo_concurrency]`
 
 Also, remove or comment out `log_file` if present.
 Finally, start the service:
