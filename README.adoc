@@ -97,6 +97,7 @@ $ cd cloudkitty/
 $ git checkout stable/train
 $ virtualenv -p $(which python3) venv
 $ . venv/bin/activate
+$ pip install --upgrade pip
 $ pip install -r requirements.txt
 $ pip install pymysql==0.10.1 python3-memcached==1.51 # these modules are needed but not listed in requirements
 $ pip install Werkzeug==0.16.1 # the latest version (1.0.1) no longer supports the "DispatcherMiddleware()" method
