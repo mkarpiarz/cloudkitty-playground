@@ -111,6 +111,12 @@ To replace the `cloudkitty_processor` container follow these steps:
 $ sudo cat /etc/kolla/cloudkitty-processor/cloudkitty.conf | tee /opt/cloudkitty/cloudkitty.conf
 $ sudo cat /etc/kolla/cloudkitty-processor/metrics.yml | tee /opt/cloudkitty/metrics.yml
 ------
+
+[NOTE]
+======
+Sample `metrics.yml` files can be found on collector-specific branches in this repository.
+======
+
 Adjust paths for the following config parameters found in `/opt/cloudkitty/cloudkitty.conf`:
 
 * `log_dir = /opt/cloudkitty/log` in section `[DEFAULT]`
