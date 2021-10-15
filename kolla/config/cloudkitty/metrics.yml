@@ -9,3 +9,5 @@ metrics:
     extra_args:
       aggregation_method: mean
       resource_type: instance
+      # See: https://storyboard.openstack.org/#!/story/2008598#comment-170473
+      force_granularity: 300
