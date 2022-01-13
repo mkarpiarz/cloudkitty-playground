@@ -121,7 +121,7 @@ Adjust paths for the following config parameters found in `/opt/cloudkitty/cloud
 
 * `log_dir = /opt/cloudkitty/log` in section `[DEFAULT]`
 * `lock_path = /opt/cloudkitty/tmp` in section `[oslo_concurrency]`
-* `metrics_conf = /etc/cloudkitty/metrics.yml` in section `[collect]`
+* `metrics_conf = /opt/cloudkitty/metrics.yml` in section `[collect]`
 
 Also, remove or comment out `log_file` if present.
 Finally, start the service:
