@@ -160,6 +160,15 @@ The port number and the host IP have to be passed through flags even if they are
 
 API logs will be written to `/opt/cloudkitty/log/cloudkitty-api.log`.
 
+== Finding CloudKitty data in Influx
+Run these commands to check out what data CloudKitty has collected so far in its InfluxDB database:
+
+------
+$ sudo docker exec -it influxdb influx -host 10.10.10.254 -database cloudkitty
+> SHOW MEASUREMENTS
+> SELECT * FROM dataframes ORDER BY time DESC LIMIT 10
+------
+
 == Resources
 . https://docs.openstack.org/cloudkitty/train/admin/configuration/collector.html
 . https://docs.openstack.org/cloudkitty/train/user/rating/hashmap.html
