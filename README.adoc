@@ -119,9 +119,11 @@ Sample `metrics.yml` files can be found on collector-specific branches in this r
 
 Adjust paths for the following config parameters found in `/opt/cloudkitty/cloudkitty.conf`:
 
-* `log_dir = /opt/cloudkitty/log` in section `[DEFAULT]`
-* `lock_path = /opt/cloudkitty/tmp` in section `[oslo_concurrency]`
-* `metrics_conf = /opt/cloudkitty/metrics.yml` in section `[collect]`
+------
+sed -i.$(date +%s).bak 's|\(^log_dir = \).*|\1/opt/cloudkitty/log|' /opt/cloudkitty/cloudkitty.conf #`log_dir = /opt/cloudkitty/log` in section `[DEFAULT]`
+sed -i.$(date +%s).bak 's|\(^lock_path = \).*|\1/opt/cloudkitty/tmp|' /opt/cloudkitty/cloudkitty.conf #`lock_path = /opt/cloudkitty/tmp` in section `[oslo_concurrency]`
+sed -i.$(date +%s).bak 's|\(^metrics_conf = \).*|\1/opt/cloudkitty/metrics.yml|' /opt/cloudkitty/cloudkitty.conf #`metrics_conf = /opt/cloudkitty/metrics.yml` in section `[collect]`
+------
 
 Also, remove or comment out `log_file` if present.
 Finally, start the service:
@@ -141,8 +143,10 @@ $ sudo docker exec cloudkitty_api cat /etc/cloudkitty/api_paste.ini | tee /opt/c
 ------
 Adjust paths for the following config parameters found in `/opt/cloudkitty/cloudkitty.conf`:
 
-* `log_dir = /opt/cloudkitty/log` in section `[DEFAULT]`
-* `lock_path = /opt/cloudkitty/tmp` in section `[oslo_concurrency]`
+------
+sed -i.$(date +%s).bak 's|\(^log_dir = \).*|\1/opt/cloudkitty/log|' /opt/cloudkitty/cloudkitty.conf #`log_dir = /opt/cloudkitty/log` in section `[DEFAULT]`
+sed -i.$(date +%s).bak 's|\(^lock_path = \).*|\1/opt/cloudkitty/tmp|' /opt/cloudkitty/cloudkitty.conf #`lock_path = /opt/cloudkitty/tmp` in section `[oslo_concurrency]`
+------
 
 Also, remove or comment out `log_file` if present.
 Finally, start the service:
@@ -172,3 +176,4 @@ $ sudo docker exec -it influxdb influx -host 10.10.10.254 -database cloudkitty
 == Resources
 . https://docs.openstack.org/cloudkitty/train/admin/configuration/collector.html
 . https://docs.openstack.org/cloudkitty/train/user/rating/hashmap.html
+. https://askubuntu.com/questions/663335/sed-command-to-replace-a-value-in-config-file
