@@ -80,7 +80,7 @@ The Horizon dashboard URL is http://10.10.10.254.
 To confirm CloudKitty is available, run this command on your deploy host:
 
 ------
-$ cloudkitty summary get
+$ openstack rating summary get
 ------
 This should return an empty list.
 
