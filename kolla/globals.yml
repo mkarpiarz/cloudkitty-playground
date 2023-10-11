@@ -34,3 +34,6 @@ enable_influxdb: "yes"
 enable_gnocchi: "yes"
 gnocchi_backend_storage: "file"
 enable_ceilometer: "yes"
+# NOTE: Without the next override the `celiometer_central` container may end up in the "unhealthy" state.
+# See: https://github.com/osism/issues/issues/231
+ceilometer_central_enable_healthchecks: "no"
